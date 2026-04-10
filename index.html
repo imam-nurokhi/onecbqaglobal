@@ -29,13 +29,13 @@
       background: #fff;
     }
 
-    /* Background circle image — left/center */
+    /* Background circle image — center-left, prominent */
     .bg-main {
       position: absolute;
       inset: 0;
-      background: url('assets/Background_C.png') no-repeat center left;
-      background-size: contain;
-      opacity: 0.5;
+      background: url('assets/Background_C.png') no-repeat 28% center;
+      background-size: 58vw;
+      opacity: 0.55;
       pointer-events: none;
       z-index: 0;
     }
@@ -50,18 +50,7 @@
       z-index: 0;
     }
 
-    /* White fade on right side so menu panel reads clearly */
-    .bg-right-fade {
-      position: absolute;
-      top: 0; right: 0;
-      width: 48%;
-      height: 100%;
-      background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.85) 30%, #fff 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero > *:not(.bg-main):not(.bg-lines):not(.bg-right-fade) {
+    .hero > *:not(.bg-main):not(.bg-lines) {
       position: relative;
       z-index: 1;
     }
@@ -71,11 +60,11 @@
       display: flex;
       align-items: center;
       gap: clamp(10px, 1vw, 18px);
-      padding: clamp(20px, 3.5vh, 50px) 0 0 clamp(50px, 6vw, 120px);
+      padding: clamp(20px, 3.5vh, 50px) 0 0 clamp(50px, 4.5vw, 80px);
     }
 
     .logo-cbqa {
-      height: clamp(52px, 7vh, 90px);
+      height: clamp(56px, 8vh, 100px);
       object-fit: contain;
     }
 
@@ -97,14 +86,14 @@
     /* Left: CBQA Global + ONE + desc */
     .hero-left {
       position: absolute;
-      left: clamp(50px, 6vw, 120px);
+      left: clamp(160px, 22vw, 320px);
       top: 50%;
       transform: translateY(-50%);
     }
 
     .brand-text {
-      font-size: clamp(18px, 2vw, 40px);
-      font-weight: 500;
+      font-size: clamp(20px, 2.4vw, 44px);
+      font-weight: 600;
       color: #111;
       line-height: 1;
       white-space: nowrap;
@@ -112,7 +101,7 @@
     }
 
     .one-text {
-      font-size: clamp(90px, 16vw, 240px);
+      font-size: clamp(80px, 15vw, 218px);
       font-weight: 900;
       color: #319EA9;
       line-height: 0.85;
@@ -122,8 +111,8 @@
 
     .desc-text {
       margin-top: clamp(8px, 1.2vh, 20px);
-      margin-left: clamp(100px, 10vw, 190px);
-      font-size: clamp(12px, 1vw, 18px);
+      margin-left: clamp(80px, 8vw, 150px);
+      font-size: clamp(11px, 0.9vw, 16px);
       font-weight: 300;
       color: #555;
       line-height: 1.55;
@@ -132,13 +121,13 @@
     /* Right: Service menu */
     .hero-right {
       position: absolute;
-      right: clamp(60px, 6vw, 140px);
+      right: clamp(100px, 20vw, 300px);
       top: 50%;
       transform: translateY(-50%);
     }
 
     .menu-panel {
-      width: clamp(280px, 28vw, 520px);
+      width: clamp(260px, 23vw, 340px);
     }
 
     .menu-link {
@@ -179,8 +168,8 @@
     }
 
     .menu-item img {
-      width: clamp(56px, 5.5vw, 95px);
-      height: clamp(56px, 5.5vw, 95px);
+      width: clamp(48px, 4.8vw, 72px);
+      height: clamp(48px, 4.8vw, 72px);
       object-fit: contain;
       flex-shrink: 0;
       transition: transform 0.22s ease;
@@ -194,7 +183,7 @@
     }
 
     .menu-item-label {
-      font-size: clamp(20px, 2.4vw, 42px);
+      font-size: clamp(18px, 2vw, 34px);
       color: #111;
       line-height: 1.1;
       white-space: nowrap;
@@ -394,7 +383,6 @@
   <div class="hero">
 
     <div class="bg-main"></div>
-    <div class="bg-right-fade"></div>
     <img src="assets/garis_koneksi.png" class="bg-lines" alt="" />
 
     <!-- Top logos -->
@@ -453,7 +441,7 @@
 
           <a href="https://onegrc.cbqaglobal.co.id/" target="_blank" rel="noopener" class="menu-link">
             <div class="menu-item">
-              <svg style="width:clamp(56px,5.5vw,95px);height:clamp(56px,5.5vw,95px);flex-shrink:0;" viewBox="0 0 75 75" aria-hidden="true">
+              <svg style="width:clamp(48px,4.8vw,72px);height:clamp(48px,4.8vw,72px);flex-shrink:0;" viewBox="0 0 75 75" aria-hidden="true">
                 <circle cx="37.5" cy="37.5" r="34" fill="none" stroke="#319EA9" stroke-width="3"/>
                 <text x="37.5" y="43" text-anchor="middle" font-size="18" font-weight="700" fill="#319EA9" font-family="Poppins,sans-serif">GRC</text>
               </svg>

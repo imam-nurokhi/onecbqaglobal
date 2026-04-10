@@ -4,25 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CBQA Global one</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: white;
+      background: #fff;
       font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      height: 100vh;
     }
 
-    .mobile-layout {
-      display: none;
-    }
+    .mobile-layout { display: none; }
 
-
-    /* === DESKTOP === */
+    /* ═══════════════════════════════ DESKTOP ═══════════════════════════════ */
 
     .hero {
       position: relative;
@@ -31,101 +26,119 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      background: #fff;
     }
 
+    /* Background circle image — left/center */
     .bg-main {
       position: absolute;
       inset: 0;
-      background: url('assets/Background_C.png') no-repeat center;
+      background: url('assets/Background_C.png') no-repeat center left;
       background-size: contain;
       opacity: 0.5;
       pointer-events: none;
       z-index: 0;
     }
 
+    /* Geometric line art — top right */
     .bg-lines {
       position: absolute;
       top: 0;
       right: 0;
-      width: clamp(160px, 14vw, 270px);
+      width: clamp(180px, 16vw, 300px);
       pointer-events: none;
       z-index: 0;
     }
 
-    .hero > *:not(.bg-main):not(.bg-lines) {
+    /* White fade on right side so menu panel reads clearly */
+    .bg-right-fade {
+      position: absolute;
+      top: 0; right: 0;
+      width: 48%;
+      height: 100%;
+      background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.85) 30%, #fff 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero > *:not(.bg-main):not(.bg-lines):not(.bg-right-fade) {
       position: relative;
       z-index: 1;
     }
 
+    /* ── TOP LOGOS ── */
     .top-logos {
       display: flex;
       align-items: center;
-      gap: clamp(12px, 1vw, 20px);
-      padding: clamp(24px, 4vh, 55px) 0 0 clamp(80px, 8vw, 150px);
+      gap: clamp(10px, 1vw, 18px);
+      padding: clamp(20px, 3.5vh, 50px) 0 0 clamp(50px, 6vw, 120px);
     }
 
     .logo-cbqa {
-      height: clamp(55px, 7.5vh, 95px);
+      height: clamp(52px, 7vh, 90px);
       object-fit: contain;
     }
 
     .logo-nexora {
-      height: clamp(44px, 6vh, 75px);
+      height: clamp(40px, 5.5vh, 70px);
       object-fit: contain;
       position: relative;
-      top: clamp(6px, 1vh, 15px);
+      top: clamp(4px, 0.8vh, 12px);
     }
 
+    /* ── HERO BODY ── */
     .hero-body {
       flex: 1;
       display: flex;
       align-items: center;
-      padding: 0 clamp(10px, 1vw, 20px) 0 clamp(80px, 8vw, 150px);
-      gap: clamp(10px, 1vw, 20px);
-      justify-content: flex-end;
+      position: relative;
     }
 
+    /* Left: CBQA Global + ONE + desc */
     .hero-left {
       position: absolute;
-      left: 50%;
-      transform: translateX(calc(-50% - 8vw));
+      left: clamp(50px, 6vw, 120px);
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .brand-text {
-      font-size: clamp(20px, 2.3vw, 44px);
+      font-size: clamp(18px, 2vw, 40px);
       font-weight: 500;
       color: #111;
       line-height: 1;
       white-space: nowrap;
+      letter-spacing: -0.01em;
     }
 
     .one-text {
-      font-size: clamp(80px, 15vw, 220px);
+      font-size: clamp(90px, 16vw, 240px);
       font-weight: 900;
       color: #319EA9;
-      line-height: 0.9;
+      line-height: 0.85;
       white-space: nowrap;
+      letter-spacing: -0.04em;
     }
 
     .desc-text {
-      align-self: flex-start;
-      text-align: left;
-      margin-left: clamp(120px, 12vw, 220px);
+      margin-top: clamp(8px, 1.2vh, 20px);
+      margin-left: clamp(100px, 10vw, 190px);
+      font-size: clamp(12px, 1vw, 18px);
+      font-weight: 300;
+      color: #555;
+      line-height: 1.55;
     }
 
+    /* Right: Service menu */
     .hero-right {
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: clamp(20px, 2vw, 40px);
+      position: absolute;
+      right: clamp(60px, 6vw, 140px);
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .menu-panel {
-      width: clamp(240px, 20vw, 380px);
-      padding: clamp(6px, 0.8vh, 12px) clamp(14px, 1.2vw, 26px);
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(2px);
+      width: clamp(280px, 28vw, 520px);
     }
 
     .menu-link {
@@ -137,11 +150,11 @@
     .menu-item {
       display: flex;
       align-items: center;
-      gap: clamp(12px, 1vw, 20px);
-      padding: clamp(8px, 1vh, 14px) 8px;
-      border-bottom: 1px solid #ccc;
-      border-radius: 8px;
-      transition: transform 0.2s ease, background 0.2s ease;
+      gap: clamp(14px, 1.4vw, 28px);
+      padding: clamp(10px, 1.4vh, 22px) 0;
+      border-bottom: 1.5px solid #ccc;
+      border-radius: 6px;
+      transition: transform 0.22s ease, background 0.22s ease;
       cursor: pointer;
     }
 
@@ -150,12 +163,14 @@
     }
 
     .menu-item:hover {
-      transform: translateX(8px) scale(1.02);
-      background: rgba(49, 158, 169, 0.08);
+      transform: translateX(10px);
+      background: rgba(49, 158, 169, 0.06);
+      padding-left: 8px;
     }
 
-    .menu-item:hover img {
-      transform: scale(1.1);
+    .menu-item:hover img,
+    .menu-item:hover svg {
+      transform: scale(1.08);
     }
 
     .menu-item:hover .menu-item-label span,
@@ -164,26 +179,25 @@
     }
 
     .menu-item img {
-      width: clamp(48px, 4vw, 85px);
-      height: clamp(48px, 4vw, 85px);
-      transition: transform 0.2s ease;
+      width: clamp(56px, 5.5vw, 95px);
+      height: clamp(56px, 5.5vw, 95px);
+      object-fit: contain;
+      flex-shrink: 0;
+      transition: transform 0.22s ease;
+      display: block;
     }
 
-    .icon-placeholder-gcr {
-      width: clamp(48px, 4vw, 85px);
-      height: clamp(48px, 4vw, 85px);
-    }
-
-    .menu-item img,
-    .icon-placeholder-gcr {
+    .menu-item svg {
+      flex-shrink: 0;
+      transition: transform 0.22s ease;
       display: block;
     }
 
     .menu-item-label {
-      font-size: clamp(14px, 1.1vw, 20px);
+      font-size: clamp(20px, 2.4vw, 42px);
       color: #111;
-      line-height: 1.2;
-      margin-top: 6px;
+      line-height: 1.1;
+      white-space: nowrap;
     }
 
     .menu-item-label span {
@@ -194,82 +208,74 @@
       font-weight: 700;
     }
 
+    /* ── FOOTER ── */
     .hero-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 clamp(40px, 5vw, 100px) clamp(20px, 4vh, 60px);
+      padding: 0 clamp(40px, 5vw, 120px) clamp(18px, 3.5vh, 55px);
     }
 
     .service-desk {
       display: flex;
       align-items: center;
-      gap: clamp(4px, 0.4vw, 10px);
+      gap: clamp(6px, 0.5vw, 12px);
       text-decoration: none;
       color: inherit;
       cursor: pointer;
       transition: transform 0.2s ease;
     }
 
-    .service-desk:hover {
-      transform: scale(1.05);
-    }
+    .service-desk:hover { transform: scale(1.05); }
 
     .service-desk img {
-      width: clamp(36px, 3.2vw, 60px);
-      height: clamp(36px, 3.2vw, 60px);
+      width: clamp(32px, 3vw, 58px);
+      height: clamp(32px, 3vw, 58px);
       object-fit: contain;
     }
 
     .service-text {
-      font-size: clamp(13px, 1vw, 20px);
+      font-size: clamp(12px, 1vw, 20px);
       font-weight: 400;
+      color: #333;
     }
 
     .footer-text {
-      font-size: clamp(14px, 1.4vw, 28px);
-      color: #747474;
+      font-size: clamp(13px, 1.3vw, 26px);
+      color: #888;
     }
 
-
-    /* === MOBILE === */
+    /* ═══════════════════════════════ MOBILE ═══════════════════════════════ */
 
     @media (max-width: 768px) {
-      body {
-        overflow: auto;
-      }
+      body { overflow-y: auto; height: auto; }
 
-      .hero {
-        display: none;
-      }
+      .hero { display: none; }
 
       .mobile-layout {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
         position: relative;
-        background: white;
+        background: #fff;
         overflow: hidden;
       }
 
       .m-bg-main {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
         background: url('assets/Background_C.png') no-repeat center;
         background-size: cover;
-        opacity: 0.22;
+        opacity: 0.18;
         pointer-events: none;
         z-index: 0;
       }
 
       .m-bg-lines {
         position: absolute;
-        top: 0;
-        right: 0;
-        width: 140px;
+        top: 0; right: 0;
+        width: 130px;
         pointer-events: none;
         z-index: 0;
       }
@@ -280,87 +286,67 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        padding: 0 0 32px 0;
+        padding-bottom: 36px;
       }
 
       .m-logos {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 28px 24px 0;
+        gap: 10px;
+        padding: 24px 20px 0;
       }
 
-      .m-logo-cbqa {
-        height: 52px;
-        object-fit: contain;
-      }
-
+      .m-logo-cbqa { height: 50px; object-fit: contain; }
       .m-logo-nexora {
-        height: 38px;
-        object-fit: contain;
-        position: relative;
-        top: 6px;
+        height: 36px; object-fit: contain;
+        position: relative; top: 5px;
       }
 
       .m-hero-text {
-        padding: 24px 24px 0;
+        padding: 20px 20px 0;
         position: relative;
       }
 
       .m-brand-text {
-        font-size: 18px;
-        font-weight: 500;
-        color: #111;
-        margin: 0 0 -8px 0;
+        font-size: 17px; font-weight: 500; color: #111;
+        margin-bottom: -6px;
       }
 
       .m-one-text {
-        font-size: 108px;
-        font-weight: 900;
-        color: #319EA9;
-        line-height: 0.95;
-        margin: 0;
+        font-size: 100px; font-weight: 900;
+        color: #319EA9; line-height: 0.9; margin: 0;
       }
 
       .m-desc-text {
-        font-size: 13px;
-        font-weight: 300;
-        color: #777;
-        line-height: 1.5;
-        text-align: right;
-        position: absolute;
-        right: 24px;
-        bottom: -48px;
+        font-size: 12px; font-weight: 300; color: #777;
+        line-height: 1.5; text-align: right;
+        position: absolute; right: 20px; bottom: -44px;
       }
 
       .m-menu-panel {
-        margin: 60px 20px 0;
-        background: rgba(255, 255, 255, 0.75);
-        backdrop-filter: blur(4px);
-        border-radius: 12px;
-        padding: 4px 16px;
+        margin: 56px 16px 0;
+        background: rgba(255,255,255,0.82);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border-radius: 14px;
+        padding: 2px 16px;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.06);
       }
 
-      .m-menu-link {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-      }
+      .m-menu-link { text-decoration: none; color: inherit; display: block; }
 
       .m-menu-item {
         display: flex;
         align-items: center;
         gap: 14px;
-        padding: 13px 6px;
-        border-bottom: 1px solid #ddd;
+        padding: 14px 6px;
+        border-bottom: 1px solid #e0e0e0;
         border-radius: 8px;
         transition: transform 0.2s ease, background 0.2s ease;
         cursor: pointer;
       }
 
-      .m-menu-link:last-child .m-menu-item {
-        border-bottom: none;
-      }
+      .m-menu-link:last-child .m-menu-item { border-bottom: none; }
 
       .m-menu-item:hover {
         transform: translateX(6px);
@@ -368,136 +354,100 @@
       }
 
       .m-menu-item:hover .m-menu-label span,
-      .m-menu-item:hover .m-menu-label strong {
-        color: #319EA9;
-      }
+      .m-menu-item:hover .m-menu-label strong { color: #319EA9; }
 
       .m-menu-item img {
-        width: 44px;
-        height: 44px;
-        object-fit: contain;
-        flex-shrink: 0;
+        width: 46px; height: 46px;
+        object-fit: contain; flex-shrink: 0;
       }
 
-      .m-icon-gcr {
-        width: 44px;
-        height: 44px;
-        flex-shrink: 0;
-      }
+      .m-icon-gcr { width: 46px; height: 46px; flex-shrink: 0; }
 
-      .m-menu-label {
-        font-size: 16px;
-        color: #111;
-        line-height: 1.2;
-      }
-
-      .m-menu-label span {
-        font-weight: 300;
-      }
-
-      .m-menu-label strong {
-        font-weight: 700;
-      }
+      .m-menu-label { font-size: 18px; color: #111; line-height: 1.2; }
+      .m-menu-label span { font-weight: 300; }
+      .m-menu-label strong { font-weight: 700; }
 
       .m-service-desk {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        justify-content: center;
+        display: flex; align-items: center;
+        gap: 8px; justify-content: center;
         margin-top: 28px;
-        text-decoration: none;
-        cursor: pointer;
+        text-decoration: none; cursor: pointer;
         transition: transform 0.2s ease;
       }
 
-      .m-service-desk:hover {
-        transform: scale(1.04);
-      }
+      .m-service-desk:hover { transform: scale(1.04); }
 
-      .m-service-desk img {
-        width: 42px;
-        height: 42px;
-        object-fit: contain;
-      }
+      .m-service-desk img { width: 40px; height: 40px; object-fit: contain; }
 
-      .m-service-text {
-        font-size: 15px;
-        font-weight: 400;
-        color: #555;
-      }
+      .m-service-text { font-size: 14px; font-weight: 400; color: #444; }
 
       .m-footer-text {
-        font-size: 13px;
-        color: #aaa;
-        text-align: center;
-        margin-top: 10px;
+        font-size: 12px; color: #bbb;
+        text-align: center; margin-top: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- DESKTOP -->
+  <!-- ══════════════ DESKTOP ══════════════ -->
   <div class="hero">
 
     <div class="bg-main"></div>
-    <img src="assets/garis_koneksi.png" class="bg-lines" />
+    <div class="bg-right-fade"></div>
+    <img src="assets/garis_koneksi.png" class="bg-lines" alt="" />
 
+    <!-- Top logos -->
     <div class="top-logos">
-      <a href="https://www.cbqaglobal.com/" target="_blank">
-        <img src="assets/Logo_CBQA.png" class="logo-cbqa" alt="CBQA Logo">
+      <a href="https://www.cbqaglobal.com/" target="_blank" rel="noopener">
+        <img src="assets/Logo_CBQA.png" class="logo-cbqa" alt="CBQA Global">
       </a>
-      <a href="https://nexoratech.co/" target="_blank">
-        <img src="assets/Logo_Nexora_Part.png" class="logo-nexora" alt="Nexora Logo">
+      <a href="https://nexoratech.co/" target="_blank" rel="noopener">
+        <img src="assets/Logo_Nexora_Part.png" class="logo-nexora" alt="Powered by Nexora">
       </a>
     </div>
 
+    <!-- Hero body -->
     <div class="hero-body">
 
+      <!-- Left: branding -->
       <div class="hero-left">
         <div class="brand-text">CBQA Global</div>
         <div class="one-text">one</div>
-        <div class="desc-text">Access all your services<br>quickly and seamlessly.</div>
+        <div class="desc-text">
+          Access all your services<br>quickly and seamlessly.
+        </div>
       </div>
 
+      <!-- Right: service menu -->
       <div class="hero-right">
         <div class="menu-panel">
 
-          <a href="https://oneconnect.cbqaglobal.co.id/register" target="_blank" class="menu-link">
+          <a href="https://oneconnect.cbqaglobal.co.id/register" target="_blank" rel="noopener" class="menu-link">
             <div class="menu-item">
-              <img src="assets/Icon_one_boarding.png" alt="one boarding" />
+              <img src="assets/Icon_one_boarding.png" alt="one boarding">
               <div class="menu-item-label"><span>one </span><strong>boarding</strong></div>
             </div>
           </a>
 
-          <a href="https://oneconnect.cbqaglobal.co.id/" target="_blank" class="menu-link">
+          <a href="https://oneconnect.cbqaglobal.co.id/" target="_blank" rel="noopener" class="menu-link">
             <div class="menu-item">
-              <img src="assets/Icon_one_connect.png" alt="one connect" />
+              <img src="assets/Icon_one_connect.png" alt="one connect">
               <div class="menu-item-label"><span>one </span><strong>connect</strong></div>
             </div>
           </a>
 
-          <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="menu-link">
+          <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" rel="noopener" class="menu-link">
             <div class="menu-item">
-              <img src="assets/Icon_one_hub.png" alt="one hub" />
+              <img src="assets/Icon_one_hub.png" alt="one hub">
               <div class="menu-item-label"><span>one </span><strong>hub</strong></div>
             </div>
           </a>
 
-          <a href="https://onealpha.cbqaglobal.co.id/login" target="_blank" class="menu-link">
+          <a href="https://onealpha.cbqaglobal.co.id/login" target="_blank" rel="noopener" class="menu-link">
             <div class="menu-item">
-              <img src="assets/Icon_one_alpha.png" alt="one alpha" />
+              <img src="assets/Icon_one_alpha.png" alt="one alpha">
               <div class="menu-item-label"><span>one </span><strong>alpha</strong></div>
-            </div>
-          </a>
-
-          <a href="https://onegrc.cbqaglobal.co.id/" target="_blank" class="menu-link">
-            <div class="menu-item">
-              <svg class="icon-placeholder-gcr" viewBox="0 0 75 75">
-                <circle cx="37.5" cy="37.5" r="34" fill="none" stroke="#319EA9" stroke-width="3"/>
-                <text x="37.5" y="43" text-anchor="middle" font-size="18" font-weight="700" fill="#319EA9">GRC</text>
-              </svg>
-              <div class="menu-item-label"><span>one </span><strong>grc</strong></div>
             </div>
           </a>
 
@@ -506,8 +456,9 @@
 
     </div>
 
+    <!-- Footer -->
     <div class="hero-footer">
-      <a href="https://support.cbqaglobal.co.id/" target="_blank" class="service-desk">
+      <a href="https://support.cbqaglobal.co.id/" target="_blank" rel="noopener" class="service-desk">
         <img src="assets/Icon_service_desk.png" alt="Service desk">
         <div class="service-text">Service desk</div>
       </a>
@@ -517,20 +468,20 @@
   </div>
 
 
-  <!-- MOBILE -->
+  <!-- ══════════════ MOBILE ══════════════ -->
   <div class="mobile-layout">
 
     <div class="m-bg-main"></div>
-    <img src="assets/garis_koneksi.png" class="m-bg-lines" />
+    <img src="assets/garis_koneksi.png" class="m-bg-lines" alt="" />
 
     <div class="m-content">
 
       <div class="m-logos">
-        <a href="https://www.cbqaglobal.com/" target="_blank">
-          <img src="assets/Logo_CBQA.png" class="m-logo-cbqa" alt="CBQA Logo">
+        <a href="https://www.cbqaglobal.com/" target="_blank" rel="noopener">
+          <img src="assets/Logo_CBQA.png" class="m-logo-cbqa" alt="CBQA Global">
         </a>
-        <a href="https://nexoratech.co/" target="_blank">
-          <img src="assets/Logo_Nexora_Part.png" class="m-logo-nexora" alt="Nexora Logo">
+        <a href="https://nexoratech.co/" target="_blank" rel="noopener">
+          <img src="assets/Logo_Nexora_Part.png" class="m-logo-nexora" alt="Powered by Nexora">
         </a>
       </div>
 
@@ -544,37 +495,37 @@
 
       <div class="m-menu-panel">
 
-        <a href="https://oneconnect.cbqaglobal.co.id/register" target="_blank" class="m-menu-link">
+        <a href="https://oneconnect.cbqaglobal.co.id/register" target="_blank" rel="noopener" class="m-menu-link">
           <div class="m-menu-item">
             <img src="assets/Icon_one_boarding.png" alt="one boarding">
             <div class="m-menu-label"><span>one </span><strong>boarding</strong></div>
           </div>
         </a>
 
-        <a href="https://oneconnect.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+        <a href="https://oneconnect.cbqaglobal.co.id/" target="_blank" rel="noopener" class="m-menu-link">
           <div class="m-menu-item">
             <img src="assets/Icon_one_connect.png" alt="one connect">
             <div class="m-menu-label"><span>one </span><strong>connect</strong></div>
           </div>
         </a>
 
-        <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="m-menu-link">
+        <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" rel="noopener" class="m-menu-link">
           <div class="m-menu-item">
             <img src="assets/Icon_one_hub.png" alt="one hub">
             <div class="m-menu-label"><span>one </span><strong>hub</strong></div>
           </div>
         </a>
 
-        <a href="https://onealpha.cbqaglobal.co.id/login" target="_blank" class="m-menu-link">
+        <a href="https://onealpha.cbqaglobal.co.id/login" target="_blank" rel="noopener" class="m-menu-link">
           <div class="m-menu-item">
             <img src="assets/Icon_one_alpha.png" alt="one alpha">
             <div class="m-menu-label"><span>one </span><strong>alpha</strong></div>
           </div>
         </a>
 
-        <a href="https://onegrc.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+        <a href="https://onegrc.cbqaglobal.co.id/" target="_blank" rel="noopener" class="m-menu-link">
           <div class="m-menu-item">
-            <svg class="m-icon-gcr" viewBox="0 0 75 75">
+            <svg class="m-icon-gcr" viewBox="0 0 75 75" aria-hidden="true">
               <circle cx="37.5" cy="37.5" r="34" fill="none" stroke="#319EA9" stroke-width="3"/>
               <text x="37.5" y="43" text-anchor="middle" font-size="18" font-weight="700" fill="#319EA9">GRC</text>
             </svg>
@@ -584,7 +535,7 @@
 
       </div>
 
-      <a href="https://support.cbqaglobal.co.id/" target="_blank" class="m-service-desk">
+      <a href="https://support.cbqaglobal.co.id/" target="_blank" rel="noopener" class="m-service-desk">
         <img src="assets/Icon_service_desk.png" alt="Service desk">
         <div class="m-service-text">Service desk</div>
       </a>

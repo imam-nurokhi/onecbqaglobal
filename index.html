@@ -1,1076 +1,598 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="OneCBQA Global — Your trusted partner for global quality assurance, business auditing, and compliance solutions across industries worldwide." />
-  <title>OneCBQA Global — Trusted Quality Assurance Partner</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1E40AF',
-            'primary-dark': '#1E3A8A',
-            secondary: '#3B82F6',
-            accent: '#F97316',
-            'accent-dark': '#EA580C',
-            surface: '#EFF6FF',
-          },
-          fontFamily: {
-            heading: ['Poppins', 'sans-serif'],
-            body: ['Open Sans', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBQA Global one</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;900&display=swap" rel="stylesheet">
   <style>
-    * { scroll-behavior: smooth; }
-    body { font-family: 'Open Sans', sans-serif; }
-    h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
-
-    /* Gradient hero */
-    .hero-gradient {
-      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #1e40af 70%, #1d4ed8 100%);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Glassmorphism card */
-    .glass-card {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.15);
+    body {
+      background: white;
+      font-family: 'Poppins', sans-serif;
     }
 
-    /* Floating animation */
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+    .mobile-layout {
+      display: none;
     }
-    .float-anim { animation: float 3s ease-in-out infinite; }
-    .float-anim-delay { animation: float 3s ease-in-out infinite 1.5s; }
 
-    /* Counter animation */
-    @keyframes countUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .stat-animate { animation: countUp 0.6s ease forwards; }
 
-    /* Fade-in on scroll */
-    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    /* === DESKTOP === */
 
-    /* Service card hover */
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(30,64,175,0.15); }
-    .service-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-
-    /* Smooth nav */
-    #navbar { transition: background 0.3s ease, box-shadow 0.3s ease; }
-    #navbar.scrolled { background: rgba(15,23,42,0.95); backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
-
-    /* Mobile menu */
-    #mobile-menu { transition: max-height 0.4s ease, opacity 0.3s ease; max-height: 0; opacity: 0; overflow: hidden; }
-    #mobile-menu.open { max-height: 500px; opacity: 1; }
-
-    /* Tab active */
-    .tab-btn.active { background: #1E40AF; color: white; }
-
-    /* Logo marquee */
-    .marquee-track {
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
       display: flex;
-      animation: marquee 25s linear infinite;
-      gap: 3rem;
+      flex-direction: column;
     }
-    @keyframes marquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
 
-    /* Pulse dot */
-    @keyframes ping { 75%,100% { transform: scale(2); opacity: 0; } }
-    .pulse-dot::before {
-      content: '';
+    .bg-main {
       position: absolute;
       inset: 0;
-      border-radius: 50%;
-      background: #F97316;
-      animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite;
+      background: url('assets/Background_C.png') no-repeat center;
+      background-size: contain;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* prefers-reduced-motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
+    .bg-lines {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: clamp(160px, 14vw, 270px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero > *:not(.bg-main):not(.bg-lines) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-logos {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1vw, 20px);
+      padding: clamp(24px, 4vh, 55px) 0 0 clamp(80px, 8vw, 150px);
+    }
+
+    .logo-cbqa {
+      height: clamp(55px, 7.5vh, 95px);
+      object-fit: contain;
+    }
+
+    .logo-nexora {
+      height: clamp(44px, 6vh, 75px);
+      object-fit: contain;
+      position: relative;
+      top: clamp(6px, 1vh, 15px);
+    }
+
+    .hero-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(10px, 1vw, 20px) 0 clamp(80px, 8vw, 150px);
+      gap: clamp(10px, 1vw, 20px);
+      justify-content: flex-end;
+    }
+
+    .hero-left {
+      position: absolute;
+      left: 50%;
+      transform: translateX(calc(-50% - 8vw));
+    }
+
+    .brand-text {
+      font-size: clamp(20px, 2.3vw, 44px);
+      font-weight: 500;
+      color: #111;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .one-text {
+      font-size: clamp(80px, 15vw, 220px);
+      font-weight: 900;
+      color: #319EA9;
+      line-height: 0.9;
+      white-space: nowrap;
+    }
+
+    .desc-text {
+      align-self: flex-start;
+      text-align: left;
+      margin-left: clamp(120px, 12vw, 220px);
+    }
+
+    .hero-right {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: clamp(20px, 2vw, 40px);
+    }
+
+    .menu-panel {
+      width: clamp(240px, 20vw, 380px);
+      padding: clamp(6px, 0.8vh, 12px) clamp(14px, 1.2vw, 26px);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(2px);
+    }
+
+    .menu-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1vw, 20px);
+      padding: clamp(8px, 1vh, 14px) 8px;
+      border-bottom: 1px solid #ccc;
+      border-radius: 8px;
+      transition: transform 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .menu-link:last-child .menu-item {
+      border-bottom: none;
+    }
+
+    .menu-item:hover {
+      transform: translateX(8px) scale(1.02);
+      background: rgba(49, 158, 169, 0.08);
+    }
+
+    .menu-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .menu-item:hover .menu-item-label span,
+    .menu-item:hover .menu-item-label strong {
+      color: #319EA9;
+    }
+
+    .menu-item img {
+      width: clamp(48px, 4vw, 85px);
+      height: clamp(48px, 4vw, 85px);
+      transition: transform 0.2s ease;
+    }
+
+    .icon-placeholder-gcr {
+      width: clamp(48px, 4vw, 85px);
+      height: clamp(48px, 4vw, 85px);
+    }
+
+    .menu-item img,
+    .icon-placeholder-gcr {
+      display: block;
+    }
+
+    .menu-item-label {
+      font-size: clamp(14px, 1.1vw, 20px);
+      color: #111;
+      line-height: 1.2;
+      margin-top: 6px;
+    }
+
+    .menu-item-label span {
+      font-weight: 300;
+    }
+
+    .menu-item-label strong {
+      font-weight: 700;
+    }
+
+    .hero-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(40px, 5vw, 100px) clamp(20px, 4vh, 60px);
+    }
+
+    .service-desk {
+      display: flex;
+      align-items: center;
+      gap: clamp(4px, 0.4vw, 10px);
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .service-desk:hover {
+      transform: scale(1.05);
+    }
+
+    .service-desk img {
+      width: clamp(36px, 3.2vw, 60px);
+      height: clamp(36px, 3.2vw, 60px);
+      object-fit: contain;
+    }
+
+    .service-text {
+      font-size: clamp(13px, 1vw, 20px);
+      font-weight: 400;
+    }
+
+    .footer-text {
+      font-size: clamp(14px, 1.4vw, 28px);
+      color: #747474;
+    }
+
+
+    /* === MOBILE === */
+
+    @media (max-width: 768px) {
+      body {
+        overflow: auto;
+      }
+
+      .hero {
+        display: none;
+      }
+
+      .mobile-layout {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+        background: white;
+        overflow: hidden;
+      }
+
+      .m-bg-main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('assets/Background_C.png') no-repeat center;
+        background-size: cover;
+        opacity: 0.22;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .m-bg-lines {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 140px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .m-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 0 0 32px 0;
+      }
+
+      .m-logos {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 28px 24px 0;
+      }
+
+      .m-logo-cbqa {
+        height: 52px;
+        object-fit: contain;
+      }
+
+      .m-logo-nexora {
+        height: 38px;
+        object-fit: contain;
+        position: relative;
+        top: 6px;
+      }
+
+      .m-hero-text {
+        padding: 24px 24px 0;
+        position: relative;
+      }
+
+      .m-brand-text {
+        font-size: 18px;
+        font-weight: 500;
+        color: #111;
+        margin: 0 0 -8px 0;
+      }
+
+      .m-one-text {
+        font-size: 108px;
+        font-weight: 900;
+        color: #319EA9;
+        line-height: 0.95;
+        margin: 0;
+      }
+
+      .m-desc-text {
+        font-size: 13px;
+        font-weight: 300;
+        color: #777;
+        line-height: 1.5;
+        text-align: right;
+        position: absolute;
+        right: 24px;
+        bottom: -48px;
+      }
+
+      .m-menu-panel {
+        margin: 60px 20px 0;
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(4px);
+        border-radius: 12px;
+        padding: 4px 16px;
+      }
+
+      .m-menu-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .m-menu-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 13px 6px;
+        border-bottom: 1px solid #ddd;
+        border-radius: 8px;
+        transition: transform 0.2s ease, background 0.2s ease;
+        cursor: pointer;
+      }
+
+      .m-menu-link:last-child .m-menu-item {
+        border-bottom: none;
+      }
+
+      .m-menu-item:hover {
+        transform: translateX(6px);
+        background: rgba(49, 158, 169, 0.07);
+      }
+
+      .m-menu-item:hover .m-menu-label span,
+      .m-menu-item:hover .m-menu-label strong {
+        color: #319EA9;
+      }
+
+      .m-menu-item img {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+
+      .m-icon-gcr {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+      }
+
+      .m-menu-label {
+        font-size: 16px;
+        color: #111;
+        line-height: 1.2;
+      }
+
+      .m-menu-label span {
+        font-weight: 300;
+      }
+
+      .m-menu-label strong {
+        font-weight: 700;
+      }
+
+      .m-service-desk {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 28px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .m-service-desk:hover {
+        transform: scale(1.04);
+      }
+
+      .m-service-desk img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+      }
+
+      .m-service-text {
+        font-size: 15px;
+        font-weight: 400;
+        color: #555;
+      }
+
+      .m-footer-text {
+        font-size: 13px;
+        color: #aaa;
+        text-align: center;
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
+<body>
 
-<body class="bg-white text-slate-800">
+  <!-- DESKTOP -->
+  <div class="hero">
 
-  <!-- ════════════════════════ NAVBAR ════════════════════════ -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-4 py-3">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#hero" class="flex items-center gap-2 group" aria-label="OneCBQA Global Home">
-        <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-200">
-          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-          </svg>
+    <div class="bg-main"></div>
+    <img src="assets/garis_koneksi.png" class="bg-lines" />
+
+    <div class="top-logos">
+      <a href="https://www.cbqaglobal.com/" target="_blank">
+        <img src="assets/Logo_CBQA.png" class="logo-cbqa" alt="CBQA Logo">
+      </a>
+      <a href="https://nexoratech.co/" target="_blank">
+        <img src="assets/Logo_Nexora_Part.png" class="logo-nexora" alt="Nexora Logo">
+      </a>
+    </div>
+
+    <div class="hero-body">
+
+      <div class="hero-left">
+        <div class="brand-text">CBQA Global</div>
+        <div class="one-text">one</div>
+        <div class="desc-text">Access all your services<br>quickly and seamlessly.</div>
+      </div>
+
+      <div class="hero-right">
+        <div class="menu-panel">
+
+          <a href="https://oneconnect.cbqaglobal.co.id/register" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <img src="assets/Icon_one_boarding.png" alt="one boarding" />
+              <div class="menu-item-label"><span>one </span><strong>boarding</strong></div>
+            </div>
+          </a>
+
+          <a href="https://oneconnect.cbqaglobal.co.id/" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <img src="assets/Icon_one_connect.png" alt="one connect" />
+              <div class="menu-item-label"><span>one </span><strong>connect</strong></div>
+            </div>
+          </a>
+
+          <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <img src="assets/Icon_one_hub.png" alt="one hub" />
+              <div class="menu-item-label"><span>one </span><strong>hub</strong></div>
+            </div>
+          </a>
+
+          <a href="https://onealpha.cbqaglobal.co.id/login" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <img src="assets/Icon_one_alpha.png" alt="one alpha" />
+              <div class="menu-item-label"><span>one </span><strong>alpha</strong></div>
+            </div>
+          </a>
+
+          <a href="https://onegrc.cbqaglobal.co.id/" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <svg class="icon-placeholder-gcr" viewBox="0 0 75 75">
+                <circle cx="37.5" cy="37.5" r="34" fill="none" stroke="#319EA9" stroke-width="3"/>
+                <text x="37.5" y="43" text-anchor="middle" font-size="18" font-weight="700" fill="#319EA9">GRC</text>
+              </svg>
+              <div class="menu-item-label"><span>one </span><strong>grc</strong></div>
+            </div>
+          </a>
+
         </div>
-        <span class="text-white font-heading font-700 text-lg leading-none">
-          One<span class="text-accent">CBQA</span><br>
-          <span class="text-xs font-light tracking-widest text-slate-300">GLOBAL</span>
-        </span>
+      </div>
+
+    </div>
+
+    <div class="hero-footer">
+      <a href="https://support.cbqaglobal.co.id/" target="_blank" class="service-desk">
+        <img src="assets/Icon_service_desk.png" alt="Service desk">
+        <div class="service-text">Service desk</div>
+      </a>
+      <div class="footer-text">www.cbqaglobal.com</div>
+    </div>
+
+  </div>
+
+
+  <!-- MOBILE -->
+  <div class="mobile-layout">
+
+    <div class="m-bg-main"></div>
+    <img src="assets/garis_koneksi.png" class="m-bg-lines" />
+
+    <div class="m-content">
+
+      <div class="m-logos">
+        <a href="https://www.cbqaglobal.com/" target="_blank">
+          <img src="assets/Logo_CBQA.png" class="m-logo-cbqa" alt="CBQA Logo">
+        </a>
+        <a href="https://nexoratech.co/" target="_blank">
+          <img src="assets/Logo_Nexora_Part.png" class="m-logo-nexora" alt="Nexora Logo">
+        </a>
+      </div>
+
+      <div class="m-hero-text">
+        <p class="m-brand-text">CBQA Global</p>
+        <p class="m-one-text">one</p>
+        <div class="m-desc-text">
+          Access all your<br>services<br>quickly and<br>seamlessly.
+        </div>
+      </div>
+
+      <div class="m-menu-panel">
+
+        <a href="https://oneconnect.cbqaglobal.co.id/register" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_one_boarding.png" alt="one boarding">
+            <div class="m-menu-label"><span>one </span><strong>boarding</strong></div>
+          </div>
+        </a>
+
+        <a href="https://oneconnect.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_one_connect.png" alt="one connect">
+            <div class="m-menu-label"><span>one </span><strong>connect</strong></div>
+          </div>
+        </a>
+
+        <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_one_hub.png" alt="one hub">
+            <div class="m-menu-label"><span>one </span><strong>hub</strong></div>
+          </div>
+        </a>
+
+        <a href="https://onealpha.cbqaglobal.co.id/login" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_one_alpha.png" alt="one alpha">
+            <div class="m-menu-label"><span>one </span><strong>alpha</strong></div>
+          </div>
+        </a>
+
+        <a href="https://onegrc.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <svg class="m-icon-gcr" viewBox="0 0 75 75">
+              <circle cx="37.5" cy="37.5" r="34" fill="none" stroke="#319EA9" stroke-width="3"/>
+              <text x="37.5" y="43" text-anchor="middle" font-size="18" font-weight="700" fill="#319EA9">GRC</text>
+            </svg>
+            <div class="m-menu-label"><span>one </span><strong>grc</strong></div>
+          </div>
+        </a>
+
+      </div>
+
+      <a href="https://support.cbqaglobal.co.id/" target="_blank" class="m-service-desk">
+        <img src="assets/Icon_service_desk.png" alt="Service desk">
+        <div class="m-service-text">Service desk</div>
       </a>
 
-      <!-- Desktop Nav -->
-      <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
-        <a href="#about"     class="text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer">About</a>
-        <a href="#services"  class="text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer">Services</a>
-        <a href="#industries" class="text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer">Industries</a>
-        <a href="#clients"   class="text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer">Clients</a>
-        <a href="#team"      class="text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer">Team</a>
-        <a href="#contact"   class="text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer">Contact</a>
-      </div>
+      <div class="m-footer-text">www.cbqaglobal.com</div>
 
-      <!-- CTA -->
-      <div class="hidden lg:flex items-center gap-3">
-        <a href="#contact" class="text-sm text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer">Login</a>
-        <a href="#contact" class="bg-accent hover:bg-accent-dark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 cursor-pointer shadow-lg shadow-orange-500/25">
-          Get Started
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="hamburger" class="lg:hidden text-white p-2 cursor-pointer" aria-label="Toggle menu" aria-expanded="false">
-        <svg id="ham-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
     </div>
+  </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="lg:hidden bg-slate-900/95 backdrop-blur-md mt-2 rounded-2xl border border-slate-700/50">
-      <div class="flex flex-col p-4 gap-1">
-        <a href="#about"      class="text-slate-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors duration-200 cursor-pointer font-medium">About</a>
-        <a href="#services"   class="text-slate-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors duration-200 cursor-pointer font-medium">Services</a>
-        <a href="#industries" class="text-slate-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors duration-200 cursor-pointer font-medium">Industries</a>
-        <a href="#clients"    class="text-slate-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors duration-200 cursor-pointer font-medium">Clients</a>
-        <a href="#team"       class="text-slate-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors duration-200 cursor-pointer font-medium">Team</a>
-        <a href="#contact"    class="text-slate-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors duration-200 cursor-pointer font-medium">Contact</a>
-        <div class="border-t border-slate-700 my-2"></div>
-        <a href="#contact" class="bg-accent hover:bg-accent-dark text-white font-semibold px-4 py-3 rounded-lg text-center transition-colors duration-200 cursor-pointer">
-          Get Started
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ════════════════════════ HERO ════════════════════════ -->
-  <section id="hero" class="hero-gradient min-h-screen flex items-center relative overflow-hidden pt-20">
-    <!-- Background decoration -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl"></div>
-      <div class="absolute bottom-0 -left-32 w-96 h-96 rounded-full bg-indigo-800/30 blur-3xl"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-blue-700/10 blur-3xl"></div>
-      <!-- Grid pattern -->
-      <svg class="absolute inset-0 w-full h-full opacity-5" aria-hidden="true">
-        <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/></pattern></defs>
-        <rect width="100%" height="100%" fill="url(#grid)"/>
-      </svg>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <!-- Left: Text -->
-        <div>
-          <!-- Badge -->
-          <div class="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm text-blue-200 mb-6">
-            <span class="relative w-2 h-2 pulse-dot bg-accent rounded-full"></span>
-            Trusted by 200+ Global Organizations
-          </div>
-
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight mb-6">
-            One Partner.<br>
-            <span class="text-accent">Global Quality</span><br>
-            Assurance.
-          </h1>
-
-          <p class="text-slate-300 text-lg leading-relaxed mb-8 max-w-xl">
-            OneCBQA Global delivers end-to-end quality assurance, business auditing, and compliance solutions — helping organizations achieve excellence across every industry and border.
-          </p>
-
-          <div class="flex flex-col sm:flex-row gap-4">
-            <a href="#contact" class="bg-accent hover:bg-accent-dark text-white font-semibold px-8 py-4 rounded-xl text-center transition-all duration-200 cursor-pointer shadow-xl shadow-orange-500/30 hover:shadow-orange-500/50">
-              Start Your Journey
-            </a>
-            <a href="#services" class="glass-card text-white font-semibold px-8 py-4 rounded-xl text-center hover:bg-white/15 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              Explore Services
-            </a>
-          </div>
-
-          <!-- Trust badges -->
-          <div class="flex flex-wrap gap-3 mt-10">
-            <div class="glass-card flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-slate-300">
-              <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              ISO 9001:2015
-            </div>
-            <div class="glass-card flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-slate-300">
-              <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              CMMI Level 5
-            </div>
-            <div class="glass-card flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-slate-300">
-              <svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
-              50+ Countries
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Floating cards -->
-        <div class="relative lg:flex justify-center hidden">
-          <!-- Main card -->
-          <div class="glass-card rounded-2xl p-6 w-72 float-anim shadow-2xl">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <div>
-                <p class="text-white text-sm font-semibold">Audit Complete</p>
-                <p class="text-slate-400 text-xs">PT. Global Enterprise</p>
-              </div>
-            </div>
-            <div class="space-y-2">
-              <div class="flex justify-between text-xs">
-                <span class="text-slate-400">Quality Score</span>
-                <span class="text-green-400 font-semibold">98.5%</span>
-              </div>
-              <div class="w-full bg-white/10 rounded-full h-1.5">
-                <div class="bg-accent h-1.5 rounded-full" style="width:98.5%"></div>
-              </div>
-              <div class="flex justify-between text-xs">
-                <span class="text-slate-400">Compliance</span>
-                <span class="text-blue-300 font-semibold">100%</span>
-              </div>
-              <div class="w-full bg-white/10 rounded-full h-1.5">
-                <div class="bg-secondary h-1.5 rounded-full w-full"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Side card 1 -->
-          <div class="glass-card rounded-xl p-4 absolute -top-4 -right-8 w-44 float-anim-delay shadow-xl">
-            <p class="text-slate-400 text-xs mb-1">Active Projects</p>
-            <p class="text-3xl font-bold text-white font-heading">142</p>
-            <p class="text-green-400 text-xs mt-1 flex items-center gap-1">
-              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-              +18% this quarter
-            </p>
-          </div>
-
-          <!-- Side card 2 -->
-          <div class="glass-card rounded-xl p-4 absolute -bottom-8 -left-4 w-44 float-anim shadow-xl">
-            <p class="text-slate-400 text-xs mb-1">Client Satisfaction</p>
-            <div class="flex items-center gap-1 my-1">
-              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            </div>
-            <p class="text-white font-bold text-lg font-heading">4.9 / 5.0</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Wave divider -->
-    <div class="absolute bottom-0 left-0 right-0">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-12 lg:h-20" aria-hidden="true">
-        <path fill="#ffffff" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ STATS ════════════════════════ -->
-  <section class="py-12 bg-white" id="stats">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="fade-in text-center p-6 rounded-2xl bg-surface">
-          <p class="text-4xl font-bold font-heading text-primary">200<span class="text-accent">+</span></p>
-          <p class="text-slate-600 mt-1 text-sm font-medium">Global Clients</p>
-        </div>
-        <div class="fade-in text-center p-6 rounded-2xl bg-surface" style="transition-delay:0.1s">
-          <p class="text-4xl font-bold font-heading text-primary">50<span class="text-accent">+</span></p>
-          <p class="text-slate-600 mt-1 text-sm font-medium">Countries Served</p>
-        </div>
-        <div class="fade-in text-center p-6 rounded-2xl bg-surface" style="transition-delay:0.2s">
-          <p class="text-4xl font-bold font-heading text-primary">15<span class="text-accent">+</span></p>
-          <p class="text-slate-600 mt-1 text-sm font-medium">Years of Excellence</p>
-        </div>
-        <div class="fade-in text-center p-6 rounded-2xl bg-surface" style="transition-delay:0.3s">
-          <p class="text-4xl font-bold font-heading text-primary">98<span class="text-accent">%</span></p>
-          <p class="text-slate-600 mt-1 text-sm font-medium">Client Satisfaction</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ ABOUT ════════════════════════ -->
-  <section id="about" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Visual side -->
-        <div class="fade-in relative order-2 lg:order-1">
-          <div class="bg-surface rounded-3xl p-8 relative">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="bg-primary rounded-2xl p-6 text-white">
-                <svg class="w-8 h-8 mb-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                </svg>
-                <p class="font-heading font-bold text-xl">Quality First</p>
-                <p class="text-blue-200 text-sm mt-1">Excellence in every audit</p>
-              </div>
-              <div class="bg-accent rounded-2xl p-6 text-white">
-                <svg class="w-8 h-8 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064"/>
-                </svg>
-                <p class="font-heading font-bold text-xl">Global Reach</p>
-                <p class="text-orange-100 text-sm mt-1">50+ countries worldwide</p>
-              </div>
-              <div class="bg-white rounded-2xl p-6 shadow-sm col-span-2">
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p class="font-heading font-bold text-slate-800">500+ Certified Experts</p>
-                    <p class="text-slate-500 text-sm">Industry-leading professionals</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Floating badge -->
-            <div class="absolute -bottom-5 -right-5 bg-primary text-white rounded-2xl p-4 shadow-xl">
-              <p class="text-3xl font-bold font-heading">15<span class="text-accent">+</span></p>
-              <p class="text-blue-200 text-xs">Years of Trust</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Text side -->
-        <div class="fade-in order-1 lg:order-2">
-          <span class="text-accent font-semibold text-sm uppercase tracking-wider">About OneCBQA Global</span>
-          <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 mt-2 mb-6">
-            Redefining Quality Assurance for the Modern World
-          </h2>
-          <p class="text-slate-600 leading-relaxed mb-4">
-            Since our founding, OneCBQA Global has been at the forefront of quality management, business auditing, and compliance consulting. We partner with organizations across industries to embed quality into every process, every decision, and every outcome.
-          </p>
-          <p class="text-slate-600 leading-relaxed mb-8">
-            Our team of 500+ certified experts operates across 50+ countries, bringing local expertise with a global perspective. We don't just audit — we transform.
-          </p>
-
-          <div class="space-y-3">
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center mt-0.5 shrink-0">
-                <svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <p class="text-slate-700 text-sm">ISO 9001, ISO 27001, and CMMI accredited processes</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center mt-0.5 shrink-0">
-                <svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <p class="text-slate-700 text-sm">Tailored solutions for every industry and scale</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center mt-0.5 shrink-0">
-                <svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <p class="text-slate-700 text-sm">End-to-end support from assessment to certification</p>
-            </div>
-          </div>
-
-          <a href="#contact" class="inline-flex items-center gap-2 mt-8 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 cursor-pointer">
-            Learn More About Us
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ SERVICES ════════════════════════ -->
-  <section id="services" class="py-20 bg-surface">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 fade-in">
-        <span class="text-accent font-semibold text-sm uppercase tracking-wider">What We Do</span>
-        <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 mt-2 mb-4">Comprehensive QA &amp; Compliance Services</h2>
-        <p class="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          From initial assessment to full certification, we provide the complete spectrum of quality management solutions tailored to your business needs.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Card 1 -->
-        <div class="fade-in service-card bg-white rounded-2xl p-7 cursor-pointer">
-          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-slate-900 text-lg mb-2">Quality Management System</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">Design, implement, and certify ISO 9001-compliant quality management systems that drive operational excellence.</p>
-          <a href="#contact" class="inline-flex items-center gap-1 text-primary font-semibold text-sm mt-4 hover:gap-2 transition-all duration-200 cursor-pointer">
-            Learn more <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="fade-in service-card bg-white rounded-2xl p-7 cursor-pointer" style="transition-delay:0.1s">
-          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-slate-900 text-lg mb-2">Business Auditing</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">Independent, comprehensive audits covering financial, operational, compliance, and performance dimensions of your business.</p>
-          <a href="#contact" class="inline-flex items-center gap-1 text-primary font-semibold text-sm mt-4 hover:gap-2 transition-all duration-200 cursor-pointer">
-            Learn more <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="fade-in service-card bg-white rounded-2xl p-7 cursor-pointer" style="transition-delay:0.2s">
-          <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-slate-900 text-lg mb-2">Regulatory Compliance</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">Navigate complex regulatory landscapes with confidence. We ensure your operations meet all local and international compliance standards.</p>
-          <a href="#contact" class="inline-flex items-center gap-1 text-primary font-semibold text-sm mt-4 hover:gap-2 transition-all duration-200 cursor-pointer">
-            Learn more <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="fade-in service-card bg-white rounded-2xl p-7 cursor-pointer" style="transition-delay:0.1s">
-          <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-slate-900 text-lg mb-2">Process Improvement</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">Identify inefficiencies, redesign workflows, and implement Lean/Six Sigma methodologies to maximize productivity and reduce waste.</p>
-          <a href="#contact" class="inline-flex items-center gap-1 text-primary font-semibold text-sm mt-4 hover:gap-2 transition-all duration-200 cursor-pointer">
-            Learn more <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="fade-in service-card bg-white rounded-2xl p-7 cursor-pointer" style="transition-delay:0.2s">
-          <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-slate-900 text-lg mb-2">Risk Management</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">Proactively identify, assess, and mitigate risks across your enterprise with our structured risk management frameworks and tools.</p>
-          <a href="#contact" class="inline-flex items-center gap-1 text-primary font-semibold text-sm mt-4 hover:gap-2 transition-all duration-200 cursor-pointer">
-            Learn more <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="fade-in service-card bg-primary rounded-2xl p-7 cursor-pointer text-white" style="transition-delay:0.3s">
-          <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-xl mb-2">Training &amp; Certification</h3>
-          <p class="text-blue-200 text-sm leading-relaxed">Empower your teams with world-class QA training programs and internationally recognized certification pathways.</p>
-          <a href="#contact" class="inline-flex items-center gap-1 text-accent font-semibold text-sm mt-4 hover:gap-2 transition-all duration-200 cursor-pointer">
-            Learn more <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ INDUSTRIES ════════════════════════ -->
-  <section id="industries" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 fade-in">
-        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Industries We Serve</span>
-        <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 mt-2 mb-4">Tailored Solutions for Every Sector</h2>
-        <p class="text-slate-600 max-w-2xl mx-auto">Deep industry expertise across the world's most regulated and quality-critical sectors.</p>
-      </div>
-
-      <!-- Tabs -->
-      <div class="flex flex-wrap justify-center gap-2 mb-10">
-        <button class="tab-btn active px-5 py-2.5 rounded-full text-sm font-semibold border border-blue-200 text-slate-600 hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer" data-tab="manufacturing">Manufacturing</button>
-        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-blue-200 text-slate-600 hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer" data-tab="healthcare">Healthcare</button>
-        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-blue-200 text-slate-600 hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer" data-tab="finance">Financial Services</button>
-        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-blue-200 text-slate-600 hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer" data-tab="tech">Technology</button>
-        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-blue-200 text-slate-600 hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer" data-tab="energy">Energy</button>
-      </div>
-
-      <!-- Tab content -->
-      <div id="tab-manufacturing" class="tab-content">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-2xl font-heading font-bold text-slate-900 mb-4">Manufacturing Excellence</h3>
-            <p class="text-slate-600 leading-relaxed mb-6">From automotive to aerospace, we help manufacturers implement robust quality systems that reduce defect rates, improve efficiency, and meet global standards like IATF 16949 and AS9100.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Statistical Process Control (SPC)</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>FMEA &amp; Control Plans</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Supplier Quality Management</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>IATF 16949 &amp; ISO 9001 Certification</li>
-            </ul>
-          </div>
-          <div class="bg-surface rounded-2xl p-8">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">45%</p><p class="text-xs text-slate-600 mt-1">Average defect reduction</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">30%</p><p class="text-xs text-slate-600 mt-1">Efficiency improvement</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">60+</p><p class="text-xs text-slate-600 mt-1">Manufacturing clients</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">100%</p><p class="text-xs text-slate-600 mt-1">First-time pass rate</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-healthcare" class="tab-content hidden">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-2xl font-heading font-bold text-slate-900 mb-4">Healthcare Quality Assurance</h3>
-            <p class="text-slate-600 leading-relaxed mb-6">Patient safety is paramount. We help healthcare organizations implement clinical quality systems, achieve JCI accreditation, and maintain regulatory compliance across every touchpoint.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Clinical Quality Systems</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>JCI &amp; KARS Accreditation</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Patient Safety Protocols</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Medical Device QMS (ISO 13485)</li>
-            </ul>
-          </div>
-          <div class="bg-surface rounded-2xl p-8">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">40+</p><p class="text-xs text-slate-600 mt-1">Healthcare clients</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">99%</p><p class="text-xs text-slate-600 mt-1">Accreditation success</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">50%</p><p class="text-xs text-slate-600 mt-1">Incident reduction</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">20+</p><p class="text-xs text-slate-600 mt-1">Countries covered</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-finance" class="tab-content hidden">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-2xl font-heading font-bold text-slate-900 mb-4">Financial Services Compliance</h3>
-            <p class="text-slate-600 leading-relaxed mb-6">Navigate complex regulatory frameworks with confidence. We help banks, insurers, and fintech firms achieve full compliance with IFRS, Basel III, OJK regulations, and more.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Regulatory Compliance (OJK, BI, Basel)</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Internal Audit &amp; Controls</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Anti-Money Laundering (AML)</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>IFRS &amp; Financial Reporting</li>
-            </ul>
-          </div>
-          <div class="bg-surface rounded-2xl p-8">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">50+</p><p class="text-xs text-slate-600 mt-1">Financial institutions</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">0</p><p class="text-xs text-slate-600 mt-1">Compliance failures</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">25+</p><p class="text-xs text-slate-600 mt-1">Countries</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">100%</p><p class="text-xs text-slate-600 mt-1">Audit pass rate</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-tech" class="tab-content hidden">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-2xl font-heading font-bold text-slate-900 mb-4">Technology &amp; Software QA</h3>
-            <p class="text-slate-600 leading-relaxed mb-6">Ensure your software products and digital platforms meet the highest quality standards. From CMMI to ISO 27001, we align your tech operations with global best practices.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>CMMI Level 3–5 Appraisal</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>ISO 27001 Information Security</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Agile &amp; DevOps Quality Practices</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Software Testing &amp; Validation</li>
-            </ul>
-          </div>
-          <div class="bg-surface rounded-2xl p-8">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">80+</p><p class="text-xs text-slate-600 mt-1">Tech companies</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">CMMI5</p><p class="text-xs text-slate-600 mt-1">Highest level achieved</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">60%</p><p class="text-xs text-slate-600 mt-1">Bug reduction avg.</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">30+</p><p class="text-xs text-slate-600 mt-1">Countries</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-energy" class="tab-content hidden">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-2xl font-heading font-bold text-slate-900 mb-4">Energy &amp; Utilities QA</h3>
-            <p class="text-slate-600 leading-relaxed mb-6">From oil &amp; gas to renewables, we help energy companies achieve operational reliability, safety compliance, and environmental stewardship through rigorous quality frameworks.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>ISO 45001 Safety Management</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>ISO 14001 Environmental</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Asset Integrity Management</li>
-              <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>HSE Auditing &amp; Training</li>
-            </ul>
-          </div>
-          <div class="bg-surface rounded-2xl p-8">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">30+</p><p class="text-xs text-slate-600 mt-1">Energy clients</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">Zero</p><p class="text-xs text-slate-600 mt-1">Safety incidents</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">40%</p><p class="text-xs text-slate-600 mt-1">Cost reduction</p></div>
-              <div class="text-center p-4 bg-white rounded-xl"><p class="text-3xl font-bold font-heading text-primary">15+</p><p class="text-xs text-slate-600 mt-1">Countries</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ CLIENTS (MARQUEE) ════════════════════════ -->
-  <section id="clients" class="py-16 bg-surface overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center fade-in">
-      <span class="text-accent font-semibold text-sm uppercase tracking-wider">Trusted By</span>
-      <h2 class="text-3xl font-heading font-bold text-slate-900 mt-2">Industry Leaders Worldwide</h2>
-    </div>
-
-    <div class="marquee-wrapper">
-      <div class="marquee-track">
-        <!-- Client logos (text-based placeholders with brand styling) -->
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center"><span class="text-white text-xs font-bold">GE</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">Global Energy Inc.</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-red-500 flex items-center justify-center"><span class="text-white text-xs font-bold">MH</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">MedHealth Group</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-green-600 flex items-center justify-center"><span class="text-white text-xs font-bold">PT</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">PacificTech Systems</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-purple-600 flex items-center justify-center"><span class="text-white text-xs font-bold">AF</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">AeroFin Corp</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-orange-500 flex items-center justify-center"><span class="text-white text-xs font-bold">NB</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">NovaBuild Ltd.</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-teal-600 flex items-center justify-center"><span class="text-white text-xs font-bold">SM</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">SkyMed International</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center"><span class="text-white text-xs font-bold">DX</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">DataXcel Solutions</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-yellow-500 flex items-center justify-center"><span class="text-white text-xs font-bold">FP</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">FuturePharma</span>
-        </div>
-        <!-- Duplicate for seamless loop -->
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center"><span class="text-white text-xs font-bold">GE</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">Global Energy Inc.</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-red-500 flex items-center justify-center"><span class="text-white text-xs font-bold">MH</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">MedHealth Group</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-green-600 flex items-center justify-center"><span class="text-white text-xs font-bold">PT</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">PacificTech Systems</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-purple-600 flex items-center justify-center"><span class="text-white text-xs font-bold">AF</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">AeroFin Corp</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-orange-500 flex items-center justify-center"><span class="text-white text-xs font-bold">NB</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">NovaBuild Ltd.</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-teal-600 flex items-center justify-center"><span class="text-white text-xs font-bold">SM</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">SkyMed International</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center"><span class="text-white text-xs font-bold">DX</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">DataXcel Solutions</span>
-        </div>
-        <div class="shrink-0 flex items-center gap-2 bg-white rounded-xl px-6 py-4 shadow-sm border border-slate-100">
-          <div class="w-8 h-8 rounded bg-yellow-500 flex items-center justify-center"><span class="text-white text-xs font-bold">FP</span></div>
-          <span class="text-slate-700 font-semibold text-sm whitespace-nowrap">FuturePharma</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ TESTIMONIALS ════════════════════════ -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 fade-in">
-        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Testimonials</span>
-        <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 mt-2">What Our Clients Say</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="fade-in bg-surface rounded-2xl p-7 relative">
-          <svg class="w-8 h-8 text-primary/20 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          <p class="text-slate-700 leading-relaxed text-sm mb-6">"OneCBQA Global transformed our quality management from a compliance checkbox to a genuine competitive advantage. Their team is exceptional."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">JL</div>
-            <div>
-              <p class="font-semibold text-slate-900 text-sm">James Lim</p>
-              <p class="text-slate-500 text-xs">CEO, PacificTech Systems</p>
-            </div>
-          </div>
-        </div>
-        <div class="fade-in bg-primary rounded-2xl p-7 relative" style="transition-delay:0.1s">
-          <svg class="w-8 h-8 text-white/20 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          <p class="text-blue-100 leading-relaxed text-sm mb-6">"Achieving JCI accreditation seemed impossible until OneCBQA stepped in. Their structured approach and deep healthcare expertise made the difference."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white font-bold text-sm">SR</div>
-            <div>
-              <p class="font-semibold text-white text-sm">Dr. Sarah Rahman</p>
-              <p class="text-blue-300 text-xs">Director, MedHealth Group</p>
-            </div>
-          </div>
-        </div>
-        <div class="fade-in bg-surface rounded-2xl p-7 relative" style="transition-delay:0.2s">
-          <svg class="w-8 h-8 text-primary/20 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-          <p class="text-slate-700 leading-relaxed text-sm mb-6">"We achieved CMMI Level 5 on our first attempt. The OneCBQA team's process expertise and dedication are truly world-class."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white font-bold text-sm">MT</div>
-            <div>
-              <p class="font-semibold text-slate-900 text-sm">Michael Tan</p>
-              <p class="text-slate-500 text-xs">CTO, DataXcel Solutions</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ TEAM ════════════════════════ -->
-  <section id="team" class="py-20 bg-surface">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 fade-in">
-        <span class="text-accent font-semibold text-sm uppercase tracking-wider">Our Leadership</span>
-        <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 mt-2 mb-4">Meet the Experts</h2>
-        <p class="text-slate-600 max-w-2xl mx-auto">Seasoned professionals with decades of combined experience in quality assurance, auditing, and business consulting.</p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="fade-in bg-white rounded-2xl p-6 text-center group cursor-pointer hover:shadow-xl transition-all duration-300">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-2xl font-bold font-heading mx-auto mb-4 group-hover:scale-105 transition-transform duration-200">AR</div>
-          <p class="font-heading font-bold text-slate-900">Ahmad Rizky</p>
-          <p class="text-accent text-xs font-semibold mt-1 mb-2">CEO &amp; Founder</p>
-          <p class="text-slate-500 text-xs leading-relaxed">20+ years in global quality management &amp; ISO certification</p>
-        </div>
-        <div class="fade-in bg-white rounded-2xl p-6 text-center group cursor-pointer hover:shadow-xl transition-all duration-300" style="transition-delay:0.1s">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent to-orange-400 flex items-center justify-center text-white text-2xl font-bold font-heading mx-auto mb-4 group-hover:scale-105 transition-transform duration-200">SW</div>
-          <p class="font-heading font-bold text-slate-900">Sarah Wijaya</p>
-          <p class="text-accent text-xs font-semibold mt-1 mb-2">Chief Quality Officer</p>
-          <p class="text-slate-500 text-xs leading-relaxed">CMMI Lead Appraiser, 15+ years in process improvement</p>
-        </div>
-        <div class="fade-in bg-white rounded-2xl p-6 text-center group cursor-pointer hover:shadow-xl transition-all duration-300" style="transition-delay:0.2s">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-teal-400 flex items-center justify-center text-white text-2xl font-bold font-heading mx-auto mb-4 group-hover:scale-105 transition-transform duration-200">DH</div>
-          <p class="font-heading font-bold text-slate-900">David Hendra</p>
-          <p class="text-accent text-xs font-semibold mt-1 mb-2">Head of Compliance</p>
-          <p class="text-slate-500 text-xs leading-relaxed">Regulatory expert across 30+ jurisdictions worldwide</p>
-        </div>
-        <div class="fade-in bg-white rounded-2xl p-6 text-center group cursor-pointer hover:shadow-xl transition-all duration-300" style="transition-delay:0.3s">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-white text-2xl font-bold font-heading mx-auto mb-4 group-hover:scale-105 transition-transform duration-200">LS</div>
-          <p class="font-heading font-bold text-slate-900">Linda Susanto</p>
-          <p class="text-accent text-xs font-semibold mt-1 mb-2">Global Partnerships</p>
-          <p class="text-slate-500 text-xs leading-relaxed">Manages client relationships across Asia-Pacific &amp; Europe</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ CONTACT ════════════════════════ -->
-  <section id="contact" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-16 items-start">
-        <!-- Info -->
-        <div class="fade-in">
-          <span class="text-accent font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
-          <h2 class="text-3xl lg:text-4xl font-heading font-bold text-slate-900 mt-2 mb-6">Ready to Elevate Your Quality Standards?</h2>
-          <p class="text-slate-600 leading-relaxed mb-8">Contact our team of experts today. Whether you need a quick consultation or a full-scale quality transformation, we're here to help.</p>
-
-          <div class="space-y-5">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              </div>
-              <div>
-                <p class="font-semibold text-slate-900 text-sm">Email Us</p>
-                <a href="mailto:info@onecbqaglobal.com" class="text-slate-600 text-sm hover:text-primary transition-colors duration-200 cursor-pointer">info@onecbqaglobal.com</a>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-              </div>
-              <div>
-                <p class="font-semibold text-slate-900 text-sm">Call Us</p>
-                <a href="tel:+62211234567" class="text-slate-600 text-sm hover:text-primary transition-colors duration-200 cursor-pointer">+62 21 1234 5678</a>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              </div>
-              <div>
-                <p class="font-semibold text-slate-900 text-sm">Headquarters</p>
-                <p class="text-slate-600 text-sm">Jakarta, Indonesia &bull; Singapore &bull; Dubai &bull; London</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Form -->
-        <div class="fade-in" style="transition-delay:0.2s">
-          <form class="bg-surface rounded-2xl p-8 space-y-5" novalidate>
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label for="first-name" class="block text-sm font-medium text-slate-700 mb-1.5">First Name <span class="text-accent" aria-hidden="true">*</span></label>
-                <input type="text" id="first-name" name="first-name" required autocomplete="given-name"
-                  class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white text-slate-900 text-sm transition-colors duration-200"
-                  placeholder="John" />
-              </div>
-              <div>
-                <label for="last-name" class="block text-sm font-medium text-slate-700 mb-1.5">Last Name <span class="text-accent" aria-hidden="true">*</span></label>
-                <input type="text" id="last-name" name="last-name" required autocomplete="family-name"
-                  class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white text-slate-900 text-sm transition-colors duration-200"
-                  placeholder="Smith" />
-              </div>
-            </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-slate-700 mb-1.5">Work Email <span class="text-accent" aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" required autocomplete="email"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white text-slate-900 text-sm transition-colors duration-200"
-                placeholder="john@company.com" />
-            </div>
-            <div>
-              <label for="company" class="block text-sm font-medium text-slate-700 mb-1.5">Company</label>
-              <input type="text" id="company" name="company" autocomplete="organization"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white text-slate-900 text-sm transition-colors duration-200"
-                placeholder="Your company name" />
-            </div>
-            <div>
-              <label for="service" class="block text-sm font-medium text-slate-700 mb-1.5">Service Interest</label>
-              <select id="service" name="service"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white text-slate-900 text-sm transition-colors duration-200 cursor-pointer">
-                <option value="">Select a service...</option>
-                <option>Quality Management System</option>
-                <option>Business Auditing</option>
-                <option>Regulatory Compliance</option>
-                <option>Process Improvement</option>
-                <option>Risk Management</option>
-                <option>Training &amp; Certification</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div>
-              <label for="message" class="block text-sm font-medium text-slate-700 mb-1.5">Message <span class="text-accent" aria-hidden="true">*</span></label>
-              <textarea id="message" name="message" rows="4" required
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white text-slate-900 text-sm transition-colors duration-200 resize-none"
-                placeholder="Tell us about your quality challenges..."></textarea>
-            </div>
-            <button type="submit"
-              class="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3.5 px-6 rounded-xl transition-colors duration-200 cursor-pointer shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-              Send Message
-            </button>
-            <p class="text-slate-500 text-xs text-center">We'll respond within 24 business hours. Your data is safe with us.</p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════ FOOTER ════════════════════════ -->
-  <footer class="bg-slate-900 text-slate-400">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-        <!-- Brand -->
-        <div class="lg:col-span-1">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-              <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-            </div>
-            <span class="text-white font-heading font-bold text-base">One<span class="text-accent">CBQA</span> Global</span>
-          </div>
-          <p class="text-sm leading-relaxed mb-5">Your global partner for quality assurance, auditing, and compliance excellence.</p>
-          <!-- Social -->
-          <div class="flex gap-3">
-            <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary flex items-center justify-center transition-colors duration-200 cursor-pointer">
-              <svg class="w-4 h-4 text-slate-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="#" aria-label="Twitter / X" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-slate-700 flex items-center justify-center transition-colors duration-200 cursor-pointer">
-              <svg class="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-red-600 flex items-center justify-center transition-colors duration-200 cursor-pointer">
-              <svg class="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Services -->
-        <div>
-          <h4 class="text-white font-semibold text-sm mb-4">Services</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Quality Management</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Business Auditing</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Regulatory Compliance</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Process Improvement</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Risk Management</a></li>
-            <li><a href="#services" class="hover:text-white transition-colors duration-200 cursor-pointer">Training &amp; Certification</a></li>
-          </ul>
-        </div>
-
-        <!-- Company -->
-        <div>
-          <h4 class="text-white font-semibold text-sm mb-4">Company</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#about" class="hover:text-white transition-colors duration-200 cursor-pointer">About Us</a></li>
-            <li><a href="#team" class="hover:text-white transition-colors duration-200 cursor-pointer">Our Team</a></li>
-            <li><a href="#industries" class="hover:text-white transition-colors duration-200 cursor-pointer">Industries</a></li>
-            <li><a href="#clients" class="hover:text-white transition-colors duration-200 cursor-pointer">Clients</a></li>
-            <li><a href="#contact" class="hover:text-white transition-colors duration-200 cursor-pointer">Careers</a></li>
-            <li><a href="#contact" class="hover:text-white transition-colors duration-200 cursor-pointer">News &amp; Insights</a></li>
-          </ul>
-        </div>
-
-        <!-- Certifications -->
-        <div>
-          <h4 class="text-white font-semibold text-sm mb-4">Certifications</h4>
-          <div class="space-y-3">
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-accent shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <span class="text-sm">ISO 9001:2015</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-accent shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <span class="text-sm">ISO 27001:2022</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-accent shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <span class="text-sm">CMMI Level 5</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-accent shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <span class="text-sm">ISO 45001:2018</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p class="text-sm">&copy; 2026 OneCBQA Global. All rights reserved.</p>
-        <div class="flex gap-5 text-sm">
-          <a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Privacy Policy</a>
-          <a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Terms of Service</a>
-          <a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Cookie Policy</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ════════════════════════ SCRIPTS ════════════════════════ -->
-  <script>
-    // ── Navbar scroll effect ─────────────────────────────────
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
-
-    // ── Mobile hamburger ─────────────────────────────────────
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const hamIcon = document.getElementById('ham-icon');
-    const closeIcon = document.getElementById('close-icon');
-
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-      hamIcon.classList.toggle('hidden', isOpen);
-      closeIcon.classList.toggle('hidden', !isOpen);
-    });
-
-    // Close mobile menu on nav link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', false);
-        hamIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-      });
-    });
-
-    // ── Fade-in on scroll ────────────────────────────────────
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    fadeEls.forEach(el => observer.observe(el));
-
-    // ── Industry tabs ────────────────────────────────────────
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-        btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab)?.classList.remove('hidden');
-      });
-    });
-
-    // ── Contact form ─────────────────────────────────────────
-    document.querySelector('form').addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]');
-      btn.textContent = 'Message Sent! ✓';
-      btn.disabled = true;
-      btn.classList.replace('bg-primary','bg-green-600');
-      setTimeout(() => {
-        btn.innerHTML = '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg> Send Message';
-        btn.disabled = false;
-        btn.classList.replace('bg-green-600','bg-primary');
-        e.target.reset();
-      }, 3000);
-    });
-  </script>
 </body>
 </html>

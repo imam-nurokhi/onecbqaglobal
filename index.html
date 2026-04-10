@@ -147,8 +147,12 @@
       cursor: pointer;
     }
 
+    .menu-link:first-child .menu-item {
+      border-top: 1.5px solid #ccc;
+    }
+
     .menu-link:last-child .menu-item {
-      border-bottom: none;
+      border-bottom: 1.5px solid #ccc;
     }
 
     .menu-item:hover {
@@ -335,7 +339,8 @@
         cursor: pointer;
       }
 
-      .m-menu-link:last-child .m-menu-item { border-bottom: none; }
+      .m-menu-link:first-child .m-menu-item { border-top: 1px solid #e0e0e0; }
+      .m-menu-link:last-child .m-menu-item { border-bottom: 1px solid #e0e0e0; }
 
       .m-menu-item:hover {
         transform: translateX(6px);
